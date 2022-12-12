@@ -1,0 +1,38 @@
+diff --git a/quickjs.c b/quickjs.c
+index 48aeffc..94d9363 100644
+--- a/quickjs.c
++++ b/quickjs.c
+@@ -62,16 +62,16 @@
+ #define MALLOC_OVERHEAD  8
+ #endif
+ 
+-#if !defined(_WIN32)
+-/* define it if printf uses the RNDN rounding mode instead of RNDNA */
+-#define CONFIG_PRINTF_RNDN
+-#endif
++/* #if !defined(_WIN32) */
++/* /1* define it if printf uses the RNDN rounding mode instead of RNDNA *1/ */
++/* #define CONFIG_PRINTF_RNDN */
++/* #endif */
+ 
+ /* define to include Atomics.* operations which depend on the OS
+    threads */
+-#if !defined(EMSCRIPTEN)
+-#define CONFIG_ATOMICS
+-#endif
++/* #if !defined(EMSCRIPTEN) */
++/* #define CONFIG_ATOMICS */
++/* #endif */
+ 
+ #if !defined(EMSCRIPTEN)
+ /* enable stack limitation */
+@@ -1760,7 +1760,8 @@ static const JSMallocFunctions def_malloc_funcs = {
+     (size_t (*)(const void *))malloc_usable_size,
+ #else
+     /* change this to `NULL,` if compilation fails */
+-    malloc_usable_size,
++    NULL,
++    /* malloc_usable_size, */
+ #endif
+ };
+ 

@@ -64,6 +64,7 @@ fn main() {
         "check_stack_overflow.patch",
         "infinity_handling.patch",
         "atomic_new_class_id.patch",
+	"wasm_build.patch",
     ];
 
     let mut defines = vec![
@@ -104,8 +105,9 @@ fn main() {
     let mut builder = cc::Build::new();
     builder
         .extra_warnings(false)
-        //.flag("-Wno-array-bounds")
-        //.flag("-Wno-format-truncation")
+        .flag("-Wno-array-bounds")
+        .flag("-Wno-format-truncation")
+	.flag("--sysroot=/opt/wasi-sdk/share/wasi-sysroot")
         ;
 
     for (name, value) in &defines {
